@@ -45,3 +45,17 @@ def test_get_column_with_multiple_filters():
 			]
 		}
 	]
+
+def test_get_final_result():
+	results = get_next_results([
+		{'Ceiling type': "Ceiling under attic or attic knee wall"},
+		{'Attic ventilation': "FHA vented"},
+		{'Attic fan': "Yes"},
+		{'Roofing material': "Metal"},
+		{'Roof color': "Light"},
+		{'R-value': "R-19"},
+	])
+
+	assert results == '16DF-19 ml'
+
+
