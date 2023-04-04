@@ -17,3 +17,19 @@ def test_get_second_column_simple():
 			]
 		}
 	]
+
+def test_get_column_with_blanks():
+	results = get_next_results([{'Ceiling type': 'Ceiling below roof joists'}])
+
+	assert results == [
+		{
+			'Roofing material': [
+				'Asphalt shingles',
+				'Membrane',
+				'Metal',
+				'Tar and gravel',
+				'Tile',
+				'Wood shakes'
+			]
+		}
+	]
