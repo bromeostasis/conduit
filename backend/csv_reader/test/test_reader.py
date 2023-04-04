@@ -79,4 +79,12 @@ def test_empty_r_value():
 
 	assert results == {'Extended Construction Numbers': '18A-0 ad'}
 
+def test_quoted_values():
+	results = get_next_results([
+		{'Ceiling type': "Ceiling on exposed beams"},
+		{'Deck construction': '1.5" wood'},
+		{'Roofing material': "Tar and gravel"},
+	])
+
+	assert results == [{'Roof color': ['Dark', 'Light']}]
 

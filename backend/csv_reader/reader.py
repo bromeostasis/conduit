@@ -21,13 +21,15 @@ def get_next_results(columns_with_selections):
 def filter_csv_with_selections(columns_with_selections):
 	first_selection = columns_with_selections[0]
 	key = list(first_selection.keys())[0]
-	query_string = f'`{key}` == "{first_selection[key]}"'
+	filter_value = first_selection[key]
+	filtered_df = df.query(f'`{key}` == @filter_value') # @ required to deal with quoted '2"" slab'-type values. Prevents creating one big query string.
 	for selection in columns_with_selections:
 		row = list(selection.keys())[0]
 		if row != key: # Skip first key
-			query_string += f' & `{row}` == "{selection[row]}"'
+			filter_value = selection[row]
+			filtered_df = filtered_df.query(f'`{row}` == @filter_value')
 
-	return df.query(query_string)
+	return filtered_df
 
 def get_next_non_empty_column_or_final_number(filtered_df, columns_with_selections):
 	last_column_queried = list(columns_with_selections[-1].keys())[0]
