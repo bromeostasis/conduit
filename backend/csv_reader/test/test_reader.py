@@ -56,6 +56,7 @@ def test_get_final_result():
 		{'R-value': "R-19"},
 	])
 
-	assert results == '16DF-19 ml'
+	assert results == {'Extended Construction Numbers': '16DF-19 ml'}
+
 
 

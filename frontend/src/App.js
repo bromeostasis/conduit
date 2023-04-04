@@ -6,6 +6,7 @@ import './App.css';
 
 
 function App() {
+    const [ecn, setECN] = useState('')
     const [nextSelectors, setNextSelectors] = useState([])
 
     useEffect(() => {
@@ -26,7 +27,7 @@ function App() {
         callApi(apiInput)
     }
 
-    const callApi = (data) => {
+    const callApi = (data) => { // TODO: setting data should happen in caller. Use usecallback.
         fetch("/get_next_selectors", {
             method: 'POST',
             headers: {
@@ -35,7 +36,12 @@ function App() {
             body: JSON.stringify(data)
         }).then((res) =>
             res.json().then((data) => {
-                setNextSelectors(nextSelectors.concat(data))
+                if (data['Extended Construction Numbers']) {
+                    setECN(data['Extended Construction Numbers'])
+                } else {
+                    setECN('')
+                    setNextSelectors(nextSelectors.concat(data))
+                }
             })
         );
     }
@@ -49,6 +55,11 @@ function App() {
         <div className="App">
         Selectors: <br/>
         {selectors}
+        {ecn && (
+            <p>
+                Extended Construction Numbers: {ecn}
+            </p>
+        )}
         </div>
     );
 }

@@ -42,4 +42,4 @@ def get_next_non_empty_column_or_final_number(filtered_df, columns_with_selectio
 		results[next_column] = next_values
 		return [results]
 	else:
-		return filtered_df['Extended Construction Numbers'].iloc[0]
+		return {'Extended Construction Numbers': filtered_df['Extended Construction Numbers'].iloc[0]}
