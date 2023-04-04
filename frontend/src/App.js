@@ -10,24 +10,24 @@ function App() {
     const [nextSelectors, setNextSelectors] = useState([])
 
     useEffect(() => {
-        callApi([])
+        callApi([], [])
     }, []);
 
     const onSelectorChange = (index, value) => { // TODO: Maybe need to check for same value
         console.log(index, value)
-        nextSelectors[index].selected = value
-        setNextSelectors(nextSelectors) // TODO: Maybe useReducer to set individual field within. Also guarantee callApi happens after setSelectors
+        const newNextSelectors = nextSelectors.slice(0, index + 1)
+        newNextSelectors[index].selected = value
 
-        const apiInput = nextSelectors.map((selector) => {
+        const apiInput = newNextSelectors.map((selector) => {
             const input = {}
             input[Object.keys(selector)[0]] = selector.selected
             return input
         })
 
-        callApi(apiInput)
+        callApi(apiInput, newNextSelectors) // TODO: newNextSelectors likely temp, useCallback should fix
     }
 
-    const callApi = (data) => { // TODO: setting data should happen in caller. Use usecallback.
+    const callApi = (data, newNextSelectors) => { // TODO: setting data should happen in caller. Use usecallback.
         fetch("/get_next_selectors", {
             method: 'POST',
             headers: {
@@ -40,7 +40,8 @@ function App() {
                     setECN(data['Extended Construction Numbers'])
                 } else {
                     setECN('')
-                    setNextSelectors(nextSelectors.concat(data))
+
+                    setNextSelectors(newNextSelectors.concat(data))
                 }
             })
         );

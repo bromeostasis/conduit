@@ -58,5 +58,25 @@ def test_get_final_result():
 
 	assert results == {'Extended Construction Numbers': '16DF-19 ml'}
 
+def test_get_r_value():
+	results = get_next_results([
+		{'Ceiling type': 'Ceiling below roof joists'},
+		{'Roofing material': 'Tar and gravel'},
+		{'Roof color': 'Dark'},
+		{'Insulation': 'Blanket or loose fill'}
+	])
+
+	assert results == [{'R-value': ['R-11','R-13','R-15','R-19','R-21','R-30','R-38']}]
+
+
+def test_empty_r_value():
+	results = get_next_results([
+		{'Ceiling type': 'Ceiling below roof joists'},
+		{'Roofing material': 'Asphalt shingles'},
+		{'Roof color': 'Dark'},
+		{'Insulation': 'None'}
+	])
+
+	assert results == {'Extended Construction Numbers': '18A-0 ad'}
 
 
