@@ -22,12 +22,16 @@ def filter_csv_with_selections(columns_with_selections):
 	first_selection = columns_with_selections[0]
 	key = list(first_selection.keys())[0]
 	query_string = f'`{key}` == "{first_selection[key]}"'
-	# for selection in filter_csv_with_selections:
+	for selection in columns_with_selections:
+		row = list(selection.keys())[0]
+		if row != key: # Skip first key
+			query_string += f' & `{row}` == "{selection[row]}"'
 
 	return df.query(query_string)
 
 def get_next_non_empty_column(filtered_df, columns_with_selections):
-	column_index = len(columns_with_selections)
+	last_column_queried = list(columns_with_selections[-1].keys())[0]
+	column_index = ORDERED_COLUMNS.index(last_column_queried) + 1
 	next_values = []
 	while (len(next_values) == 0 or next_values == ['']) and column_index < len(ORDERED_COLUMNS):
 		next_column = ORDERED_COLUMNS[column_index] # Since last two columns are extraneous and unselectable, this is safe

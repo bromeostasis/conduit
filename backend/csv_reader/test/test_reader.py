@@ -33,3 +33,15 @@ def test_get_column_with_blanks():
 			]
 		}
 	]
+
+def test_get_column_with_multiple_filters():
+	results = get_next_results([{'Ceiling type': 'Ceiling below roof joists'}, {'Roofing material': 'Tar and gravel'}])
+
+	assert results == [
+		{
+			'Roof color': [
+				'Dark',
+				'Light'
+			]
+		}
+	]
