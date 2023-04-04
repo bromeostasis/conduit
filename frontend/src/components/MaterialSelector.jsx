@@ -1,6 +1,6 @@
 import React from 'react';
 
-const MaterialSelector = ({ index, selectorData, onChange }) => {
+const MaterialSelector = ({ index, onChange, selectorData, withArrow }) => {
 	const key = Object.keys(selectorData)[0]
 	const values = selectorData[key]
 	const selected = selectorData['selected']
@@ -13,6 +13,9 @@ const MaterialSelector = ({ index, selectorData, onChange }) => {
 	        <option value={value} selected={value === selected}>{value}</option>
 	      ))}
 	    </select>
+	    {withArrow && (
+	    	<span> -> </span>
+	    )}
 	  </>
 	)
 }

@@ -49,7 +49,7 @@ function App() {
 
     const selectors = []
     for (let i = 0; i < nextSelectors.length; i++) {
-        selectors.push(<MaterialSelector index={i} selectorData={nextSelectors[i]} onChange={onSelectorChange} />)
+        selectors.push(<MaterialSelector index={i} selectorData={nextSelectors[i]} onChange={onSelectorChange} withArrow={i < nextSelectors.length - 1} />)
     }
 
     return (
