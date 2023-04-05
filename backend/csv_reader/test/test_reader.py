@@ -97,4 +97,3 @@ def test_quoted_values():
 	])
 
 	assert results == [{'Roof color': ['Dark', 'Light']}]
-

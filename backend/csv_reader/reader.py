@@ -4,10 +4,11 @@ import os
 dirname = os.path.dirname(__file__)
 filename = os.path.join(dirname, 'data/ceiling-data.csv')
 
-df = pd.read_csv(filename).fillna('') # TODO: dtypes? maybe don't do here to avoid overwrites.
+df = pd.read_csv(filename).fillna('') # TODO: dtypes?
 
 # Not included: 'Extended Construction Numbers','Look-Up Construction Number','Notes'
 ORDERED_CATEGORIES = ['Ceiling type','Deck construction','Attic ventilation','Attic fan','Radiant barrier','Roofing material','Roof color','Insulation','R-value']
+NO_VALUES_FOUND_LIST = ['']
 
 def get_next_results(material_selections):
 	if material_selections == []:
@@ -29,15 +30,15 @@ def filter_materials_with_selections(material_selections):
 def get_next_non_empty_category_or_final_number(filtered_df, material_selections):
 	last_category_queried = get_first_dict_key(material_selections[-1])
 	ordered_category_index = ORDERED_CATEGORIES.index(last_category_queried) + 1
-	next_material_values = [''] # empty set
-	while next_material_values == [''] and ordered_category_index < len(ORDERED_CATEGORIES):
+	next_material_values = NO_VALUES_FOUND_LIST
+	while next_material_values == NO_VALUES_FOUND_LIST and ordered_category_index < len(ORDERED_CATEGORIES):
 		next_material_category = ORDERED_CATEGORIES[ordered_category_index]
 		next_material_values = filtered_df[next_material_category].unique().tolist()
-		if next_material_values != ['']: # Handling edge case for distinguishing successful R-value find vs. end-of-list
+		if next_material_values != NO_VALUES_FOUND_LIST: # Handling edge case for distinguishing successful R-value find vs. end-of-list
 			break
 		ordered_category_index += 1
 
-	if ordered_category_index != len(ORDERED_CATEGORIES):
+	if ordered_category_index < len(ORDERED_CATEGORIES):
 		results = {}
 		results[next_material_category] = next_material_values
 		return [results]
