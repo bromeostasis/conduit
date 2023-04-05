@@ -61,11 +61,13 @@ function App() {
             <h2>
                 Select your building materials:
             </h2>
-            {selectorElements}
+            <div className='selectorWrapper'>
+                {selectorElements}
+            </div>
             {ecn && (
-                <p>
+                <div className='ecn'>
                     <strong>Extended Construction Numbers:</strong> {ecn}
-                </p>
+                </div>
             )}
         </div>
     );

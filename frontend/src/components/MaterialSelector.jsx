@@ -5,18 +5,20 @@ const MaterialSelector = ({ index, onChange, selectorData, withArrow }) => {
 	const materialValues = selectorData[materialCategory]
 	const selectedValue = selectorData['selectedValue']
 	return (
-	  <>
-	    <label>{materialCategory}</label>
-	    <select key={materialCategory} onChange={(e) => onChange(index, e.target.value)}>
-	      <option value=''>~Select value~</option>
-	      {materialValues.map((materialValue) => (
-	        <option value={materialValue} selected={materialValue === selectedValue}>{materialValue}</option>
-	      ))}
-	    </select>
+	<div className='selector'>
+		<div className='selectBox'>
+		    <label>{materialCategory}</label>
+		    <select key={materialCategory} onChange={(e) => onChange(index, e.target.value)}>
+		      <option value=''>~Select value~</option>
+		      {materialValues.map((materialValue) => (
+		        <option value={materialValue} selected={materialValue === selectedValue}>{materialValue}</option>
+		      ))}
+		    </select>
+	    </div>
 	    {withArrow && (
-	    	<span> -> </span>
+	    	<span className='arrow'> -> </span>
 	    )}
-	  </>
+	</div>
 	)
 }
 

@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.selectBox {
+  display: flex;
+  flex-direction: column;
+  width: min-content;
+}
+.selector {
+  display: flex;
+  flex-direction: row;
+}
+.arrow {
+  display: flex;
+  flex-direction: row;
+  width: max-content;
+  margin: 0 2rem;
+
+}
+.selectorWrapper {
+  display: flex;
+}
+
+.ecn {
+  margin-top: 3rem;
+}
