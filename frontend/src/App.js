@@ -8,6 +8,7 @@ import './App.css';
 function App() {
     const [ecn, setECN] = useState('')
     const [materialSelectors, setMaterialSelectors] = useState([])
+    const [error, setError] = useState('')
 
     useEffect(() => {
         getNextSelectors([], [])
@@ -42,6 +43,10 @@ function App() {
                     setECN('')
                     setMaterialSelectors(newMaterialSelectors.concat(returnData))
                 }
+            }).catch((err) => {
+                setError(err.message)
+                setMaterialSelectors([])
+                setECN('')
             })
         );
     }
@@ -53,16 +58,26 @@ function App() {
 
     return (
         <div className="App">
-            <h2>
-                Select your building materials:
-            </h2>
-            <div className='selectorWrapper'>
-                {selectorElements}
-            </div>
-            {ecn && (
-                <div className='ecn'>
-                    <strong>Extended Construction Numbers:</strong> {ecn}
+            {error ? (
+                <div>
+                    <h2>Backend error ocurred. Is your server running?</h2>
+                    <p>Refresh the page to try again</p>
+                    <p>Error message: {error}</p>
                 </div>
+            ) : (
+                <>
+                    <h2>
+                        Select your building materials:
+                    </h2>
+                    <div className='selectorWrapper'>
+                        {selectorElements}
+                    </div>
+                    {ecn && (
+                        <div className='ecn'>
+                            <strong>Extended Construction Numbers:</strong> {ecn}
+                        </div>
+                    )}
+                </>
             )}
         </div>
     );
