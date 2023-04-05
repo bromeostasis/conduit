@@ -1,4 +1,4 @@
-from csv_reader.reader import *
+from csv_reader.reader import get_next_results
 
 def test_get_first_column():
 	results = get_next_results([])
@@ -57,6 +57,16 @@ def test_get_final_result():
 	])
 
 	assert results == {'Extended Construction Numbers': '16DF-19 ml'}
+
+def test_get_final_result_with_blank():
+	results = get_next_results([
+		{'Ceiling type': 'Ceiling below roof joists'},
+		{'Roofing material': 'Asphalt shingles'},
+		{'Roof color': 'Dark'},
+		{'Insulation': 'None'}
+	])
+
+	assert results == {'Extended Construction Numbers': '18A-0 ad'}
 
 def test_get_r_value():
 	results = get_next_results([

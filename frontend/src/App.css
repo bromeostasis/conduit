@@ -55,6 +55,7 @@
 }
 .selectorWrapper {
   display: flex;
+  justify-content: center;
 }
 
 .ecn {
