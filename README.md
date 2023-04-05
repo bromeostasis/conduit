@@ -1,9 +1,9 @@
-# Conduit take-home assignment
+# Conduit take-home assignment ⚡️
 This repository houses the take-home assignment for Conduit Tech. Included is all code needed to solve the problem as well as backend tests and an explanation document (this README!).
 
 The solution relies on a React app on the frontend that is connected to a Flask server on the backend. The Flask server largely uses `pandas` to filter and query the csv in order to find the next material category and values!
 
-## Running the solution locally
+## Running the solution locally 🛠
 
 *Note: this solution was built with the following libraries/version:*
 
@@ -24,7 +24,7 @@ The solution relies on a React app on the frontend that is connected to a Flask 
 1. Run `npm i` to install dependencies
 1. Run `npm start` to start the frontend. If the backend is running, you should see the working application! Create react app usually opens this for you, but if not, you can manually head to this link: [http://localhost:3000/](http://localhost:3000/)
 
-## Next steps
+## Next steps 🔮
 
 As with any timed assignment (or real feature!), there was not enough time to complete everything I wanted to do. Below is a list of tasks I wanted to do, but did not complete (in rough priority order):
 
@@ -37,7 +37,7 @@ As with any timed assignment (or real feature!), there was not enough time to co
 
 \*I decided not to implement these since we have a fairly "closed system". If any piece of this was opened up to interface with external libraries or other codebases, these tasks would have become much more imperative.
 
-## Tradeoffs
+## Tradeoffs 🤝
 
 One important tradeoff I made was to read directly from the csv. Given the scope of the assignment, I felt this would allow me to scale the solution up quickly. However, in a production-like environment, the first change I would make would likely be to store this data in the database. This allows the data to change much more easily and scales better if there are thousands or hundreds of thousands of options.
 
