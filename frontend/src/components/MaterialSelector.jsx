@@ -8,7 +8,7 @@ const MaterialSelector = ({ index, onChange, selectorData, withArrow }) => {
 	  <>
 	    <label>{key}</label>
 	    <select key={key} onChange={(e) => onChange(index, e.target.value)}>
-	      <option value={undefined}>~Select value~</option>
+	      <option value=''>~Select value~</option>
 	      {values.map((value) => (
 	        <option value={value} selected={value === selected}>{value}</option>
 	      ))}

@@ -13,10 +13,15 @@ function App() {
         callApi([], [])
     }, []);
 
-    const onSelectorChange = (index, value) => { // TODO: Maybe need to check for same value
+    const onSelectorChange = (index, value) => {
         console.log(index, value)
-        const newNextSelectors = nextSelectors.slice(0, index + 1)
-        newNextSelectors[index].selected = value
+        let newNextSelectors = []
+        if (value) {
+            newNextSelectors = nextSelectors.slice(0, index + 1)
+            newNextSelectors[index].selected = value
+        } else { // They've selected "~Select Value~", so remove the next choice
+            newNextSelectors = nextSelectors.slice(0, index)
+        }
 
         const apiInput = newNextSelectors.map((selector) => {
             const input = {}
@@ -40,7 +45,6 @@ function App() {
                     setECN(data['Extended Construction Numbers'])
                 } else {
                     setECN('')
-
                     setNextSelectors(newNextSelectors.concat(data))
                 }
             })
