@@ -35,7 +35,7 @@ As with any timed assignment (or real feature!), there was not enough time to co
 * Frontend tests
 * Switch from endpoint returning an array to a single value. Initially, I was thinking I'd return multiple results (to, for example, pre-select a field with only one value), but ultimately decided not to go in that direction.
 
-\*I decided not to implement these since we have a fairly "closed system". If any piece of this was opened up to interface with external libraries or pieces of software, this would become much more imperative.
+\*I decided not to implement these since we have a fairly "closed system". If any piece of this was opened up to interface with external libraries or other codebases, these tasks would have become much more imperative.
 
 ## Tradeoffs
 
