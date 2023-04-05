@@ -14,7 +14,6 @@ function App() {
     }, []);
 
     const onSelectorChange = (index, value) => {
-        console.log(index, value)
         let newMaterialSelectors = []
         if (value) {
             newMaterialSelectors = materialSelectors.slice(0, index + 1)
@@ -23,11 +22,7 @@ function App() {
             newMaterialSelectors = materialSelectors.slice(0, index)
         }
 
-        const apiInput = newMaterialSelectors.map((materialSelector) => {
-            const selection = {}
-            selection[Object.keys(materialSelector)[0]] = materialSelector.selectedValue
-            return selection
-        })
+        const apiInput = newMaterialSelectors.map(formatSelectorForApi)
 
         getNextSelectors(apiInput, newMaterialSelectors)
     }
@@ -71,6 +66,12 @@ function App() {
             )}
         </div>
     );
+}
+
+const formatSelectorForApi = (materialSelector) => {
+    const selection = {}
+    selection[Object.keys(materialSelector)[0]] = materialSelector.selectedValue
+    return selection
 }
 
 export default App;
