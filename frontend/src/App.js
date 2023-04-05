@@ -39,6 +39,7 @@ function App() {
             res.json().then((returnData) => {
                 if (returnData['Extended Construction Numbers']) {
                     setECN(returnData['Extended Construction Numbers'])
+                    setMaterialSelectors(newMaterialSelectors)
                 } else {
                     setECN('')
                     setMaterialSelectors(newMaterialSelectors.concat(returnData))
