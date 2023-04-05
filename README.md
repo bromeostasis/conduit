@@ -20,7 +20,7 @@ This repository houses the take-home assignment for Conduit Tech. Included is al
 1. Open a second terminal/tab. You will need one for the frontend and one for the backend
 1. `cd` to where you've cloned the repository. Then, `cd frontend`
 1. Run `npm i` to install dependencies
-1. Run `npm start` to start the frontend. If the backend is running, you should see the working application! Create react app usually opens this for you, but if not, you can manually head to this link: [http://localhost:5000/](http://localhost:5000/)
+1. Run `npm start` to start the frontend. If the backend is running, you should see the working application! Create react app usually opens this for you, but if not, you can manually head to this link: [http://localhost:3000/](http://localhost:3000/)
 
 ## Next steps
 
