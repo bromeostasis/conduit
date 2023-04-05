@@ -8,6 +8,10 @@ now = datetime.datetime.now()
 # Initializing flask app
 app = Flask(__name__)
 
+@app.route('/')
+def index():
+    return { 'greeting': 'hello' }
+
 @app.route('/get_next_selectors', methods=['POST'])
 def get_next_selectors():
     body = request.get_json()
