@@ -37,6 +37,7 @@ def get_next_non_empty_category_or_final_number(filtered_df, columns_with_select
 		if next_material_values != ['']: # Handling edge case for distinguishing successful R-value find vs. end-of-list
 			break
 		column_index += 1
+
 	if column_index != len(ORDERED_CATEGORIES):
 		results = {}
 		results[next_material_category] = next_material_values

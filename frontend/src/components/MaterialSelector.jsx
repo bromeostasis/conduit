@@ -1,16 +1,16 @@
 import React from 'react';
 
 const MaterialSelector = ({ index, onChange, selectorData, withArrow }) => {
-	const key = Object.keys(selectorData)[0]
-	const values = selectorData[key]
-	const selected = selectorData['selected']
+	const materialCategory = Object.keys(selectorData)[0]
+	const materialValues = selectorData[materialCategory]
+	const selectedValue = selectorData['selectedValue']
 	return (
 	  <>
-	    <label>{key}</label>
-	    <select key={key} onChange={(e) => onChange(index, e.target.value)}>
+	    <label>{materialCategory}</label>
+	    <select key={materialCategory} onChange={(e) => onChange(index, e.target.value)}>
 	      <option value=''>~Select value~</option>
-	      {values.map((value) => (
-	        <option value={value} selected={value === selected}>{value}</option>
+	      {materialValues.map((materialValue) => (
+	        <option value={materialValue} selected={materialValue === selectedValue}>{materialValue}</option>
 	      ))}
 	    </select>
 	    {withArrow && (

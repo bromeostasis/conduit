@@ -7,64 +7,66 @@ import './App.css';
 
 function App() {
     const [ecn, setECN] = useState('')
-    const [nextSelectors, setNextSelectors] = useState([])
+    const [materialSelectors, setMaterialSelectors] = useState([])
 
     useEffect(() => {
-        callApi([], [])
+        getNextSelectors([], [])
     }, []);
 
     const onSelectorChange = (index, value) => {
         console.log(index, value)
-        let newNextSelectors = []
+        let newMaterialSelectors = []
         if (value) {
-            newNextSelectors = nextSelectors.slice(0, index + 1)
-            newNextSelectors[index].selected = value
+            newMaterialSelectors = materialSelectors.slice(0, index + 1)
+            newMaterialSelectors[index].selectedValue = value
         } else { // They've selected "~Select Value~", so remove the next choice
-            newNextSelectors = nextSelectors.slice(0, index)
+            newMaterialSelectors = materialSelectors.slice(0, index)
         }
 
-        const apiInput = newNextSelectors.map((selector) => {
-            const input = {}
-            input[Object.keys(selector)[0]] = selector.selected
-            return input
+        const apiInput = newMaterialSelectors.map((materialSelector) => {
+            const selection = {}
+            selection[Object.keys(materialSelector)[0]] = materialSelector.selectedValue
+            return selection
         })
 
-        callApi(apiInput, newNextSelectors) // TODO: newNextSelectors likely temp, useCallback should fix
+        getNextSelectors(apiInput, newMaterialSelectors)
     }
 
-    const callApi = (data, newNextSelectors) => { // TODO: setting data should happen in caller. Use usecallback.
+    const getNextSelectors = (currentMaterialSelections, newMaterialSelectors) => {
         fetch("/get_next_selectors", {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify(currentMaterialSelections)
         }).then((res) =>
-            res.json().then((data) => {
-                if (data['Extended Construction Numbers']) {
-                    setECN(data['Extended Construction Numbers'])
+            res.json().then((returnData) => {
+                if (returnData['Extended Construction Numbers']) {
+                    setECN(returnData['Extended Construction Numbers'])
                 } else {
                     setECN('')
-                    setNextSelectors(newNextSelectors.concat(data))
+                    setMaterialSelectors(newMaterialSelectors.concat(returnData))
                 }
             })
         );
     }
 
-    const selectors = []
-    for (let i = 0; i < nextSelectors.length; i++) {
-        selectors.push(<MaterialSelector index={i} selectorData={nextSelectors[i]} onChange={onSelectorChange} withArrow={i < nextSelectors.length - 1} />)
+    const selectorElements = []
+    for (let i = 0; i < materialSelectors.length; i++) {
+        selectorElements.push(<MaterialSelector index={i} selectorData={materialSelectors[i]} onChange={onSelectorChange} withArrow={i < materialSelectors.length - 1} />)
     }
 
     return (
         <div className="App">
-        Selectors: <br/>
-        {selectors}
-        {ecn && (
-            <p>
-                Extended Construction Numbers: {ecn}
-            </p>
-        )}
+            <h2>
+                Select your building materials:
+            </h2>
+            {selectorElements}
+            {ecn && (
+                <p>
+                    <strong>Extended Construction Numbers:</strong> {ecn}
+                </p>
+            )}
         </div>
     );
 }
