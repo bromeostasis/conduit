@@ -1,7 +1,7 @@
 # Conduit take-home assignment
 This repository houses the take-home assignment for Conduit Tech. Included is all code needed to solve the problem as well as backend tests and an explanation document (this README!).
 
-The solution relies on a React app on the frontend that is connected to a flask server on the backend. The flask server largely uses `pandas` to filter and query the csv in order to find the next material category and values!
+The solution relies on a React app on the frontend that is connected to a Flask server on the backend. The Flask server largely uses `pandas` to filter and query the csv in order to find the next material category and values!
 
 ## Running the solution locally
 
