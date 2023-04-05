@@ -8,10 +8,10 @@ const MaterialSelector = ({ index, onChange, selectorData, withArrow }) => {
         <div className='selector'>
             <div className='selectBox'>
                 <label>{materialCategory}</label>
-                <select key={materialCategory} onChange={(e) => onChange(index, e.target.value)}>
+                <select key={materialCategory} onChange={(e) => onChange(index, e.target.value)} value={selectedValue || ''}>
                   <option value=''>~Select value~</option>
                   {materialValues.map((materialValue) => (
-                    <option value={materialValue} selected={materialValue === selectedValue}>{materialValue}</option>
+                    <option key={materialValue} value={materialValue}>{materialValue}</option>
                   ))}
                 </select>
             </div>

@@ -53,7 +53,9 @@ function App() {
 
     const selectorElements = []
     for (let i = 0; i < materialSelectors.length; i++) {
-        selectorElements.push(<MaterialSelector index={i} selectorData={materialSelectors[i]} onChange={onSelectorChange} withArrow={i < materialSelectors.length - 1} />)
+        selectorElements.push(
+            <MaterialSelector key={i} index={i} selectorData={materialSelectors[i]} onChange={onSelectorChange} withArrow={i < materialSelectors.length - 1} />
+        )
     }
 
     return (
