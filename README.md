@@ -1,5 +1,5 @@
-# conduit
-This repository houses the take-home assignment for Conduit Tech. Included is all code needed to solve the problem as well as backend tests and an explanation document (this README!)
+# Conduit take-home assignment
+This repository houses the take-home assignment for Conduit Tech. Included is all code needed to solve the problem as well as backend tests and an explanation document (this README!).
 
 ## Running the solution locally
 
@@ -20,7 +20,7 @@ This repository houses the take-home assignment for Conduit Tech. Included is al
 1. Open a second terminal/tab. You will need one for the frontend and one for the backend
 1. `cd` to where you've cloned the repository. Then, `cd frontend`
 1. Run `npm i` to install dependencies
-1. Run `npm start` to start the frontend. If the backend is running, you should see the working application!
+1. Run `npm start` to start the frontend. If the backend is running, you should see the working application! Create react app usually opens this for you, but if not, you can manually head to this link: [http://localhost:5000/](http://localhost:5000/)
 
 ## Next steps
 
