@@ -38,8 +38,9 @@ def get_next_non_empty_column_or_final_number(filtered_df, columns_with_selectio
 	while next_values == [''] and column_index < len(ORDERED_COLUMNS):
 		next_column = ORDERED_COLUMNS[column_index]
 		next_values = filtered_df[next_column].unique().tolist()
-		if next_values == [''] or column_index + 1 != len(ORDERED_COLUMNS): # TODO: UGGGly edge case for distinguishing successful R-value find vs. end-of-list
-			column_index += 1
+		if next_values != ['']: # Handling edge case for distinguishing successful R-value find vs. end-of-list
+			break
+		column_index += 1
 	if column_index != len(ORDERED_COLUMNS):
 		results = {}
 		results[next_column] = next_values
